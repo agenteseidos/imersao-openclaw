@@ -495,10 +495,10 @@ export default function Home() {
                 </div>
                 <div>
                   <h3 className="text-xl font-extrabold text-white mb-1">Avner Vasconcelos</h3>
-                  <p className="text-blue-400 text-sm font-semibold mb-4">Fundador da Reta Analytics</p>
+                  <p className="text-blue-400 text-sm font-semibold mb-4">Analista de Dados</p>
                   <p className="text-slate-300 leading-relaxed text-sm sm:text-base">
-                    Fundador da Reta Analytics. Analista de dados com 9 clientes ativos.
-                    Construiu agentes que monitoram campanhas e geram relatórios em tempo real — rodando agora, enquanto você lê isso.
+                    Analista de dados especializado em transformar números em decisões que aumentam lucro.
+                    Construiu agentes que monitoram campanhas e entregam análises em tempo real — rodando agora, enquanto você lê isso.
                     É o <strong className="text-white">técnico que foi fundo e voltou pra contar como funciona de verdade.</strong>
                   </p>
                 </div>
