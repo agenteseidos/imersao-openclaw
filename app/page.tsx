@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import Image from 'next/image'
 
 // ─── Intersection Observer hook for scroll animations ───────────────────────
 function useFadeIn() {
@@ -56,7 +57,7 @@ function CTAButton({
   if (variant === 'primary') {
     return (
       <a
-        href="#"
+        href="#planos"
         className={`${base} bg-blue-500 hover:bg-blue-400 text-white shadow-lg hover:shadow-blue-500/40 hover:-translate-y-0.5 active:translate-y-0`}
       >
         {label}
@@ -65,7 +66,7 @@ function CTAButton({
   }
   return (
     <a
-      href="#"
+      href="#planos"
       className={`${base} border border-blue-500 text-blue-400 hover:bg-blue-500/10 hover:border-blue-400 hover:-translate-y-0.5 active:translate-y-0`}
     >
       {label}
@@ -93,11 +94,17 @@ function CheckItem({ text }: { text: string }) {
   )
 }
 
-// ─── Speaker avatar placeholder ───────────────────────────────────────────────
-function AvatarPlaceholder({ initials }: { initials: string }) {
+// ─── Arrow item for content grid ─────────────────────────────────────────────
+function ArrowItem({ title, desc }: { title: string; desc: string }) {
   return (
-    <div className="w-20 h-20 rounded-full bg-gradient-to-br from-blue-600 to-indigo-700 flex items-center justify-center text-white text-2xl font-bold shadow-lg flex-shrink-0">
-      {initials}
+    <div className="bg-[#111118] border border-[#1e1e2e] rounded-xl p-6 flex flex-col gap-2 hover:border-blue-500/40 transition-colors duration-200">
+      <div className="flex items-start gap-3">
+        <span className="text-blue-500 font-bold text-xl mt-0.5 flex-shrink-0">→</span>
+        <div>
+          <p className="text-white font-bold text-base leading-tight">{title}</p>
+          <p className="text-slate-400 text-sm mt-1 leading-relaxed">{desc}</p>
+        </div>
+      </div>
     </div>
   )
 }
@@ -106,13 +113,17 @@ function AvatarPlaceholder({ initials }: { initials: string }) {
 function PricingCard({
   plan,
   price,
+  subtitle,
   features,
+  note,
   ctaLabel,
   highlight = false,
 }: {
   plan: string
   price: string
+  subtitle: string
   features: string[]
+  note?: string
   ctaLabel: string
   highlight?: boolean
 }) {
@@ -127,18 +138,17 @@ function PricingCard({
       {highlight && (
         <div className="absolute -top-4 left-1/2 -translate-x-1/2">
           <span className="bg-blue-500 text-white text-xs font-bold px-4 py-1.5 rounded-full tracking-widest uppercase shadow-lg">
-            Mais Popular
+            Melhor custo-benefício
           </span>
         </div>
       )}
 
       <div>
-        <p className={`text-xs font-bold tracking-widest uppercase mb-2 ${highlight ? 'text-blue-400' : 'text-slate-400'}`}>
+        <p className={`text-xs font-bold tracking-widest uppercase mb-1 ${highlight ? 'text-blue-400' : 'text-slate-400'}`}>
           {plan}
         </p>
-        <p className="text-4xl font-extrabold text-white">
-          {price}
-        </p>
+        <p className="text-4xl font-extrabold text-white mb-1">{price}</p>
+        <p className="text-slate-400 text-sm">{subtitle}</p>
       </div>
 
       <ul className="flex flex-col gap-3 flex-1">
@@ -146,6 +156,10 @@ function PricingCard({
           <CheckItem key={f} text={f} />
         ))}
       </ul>
+
+      {note && (
+        <p className="text-slate-500 text-xs leading-relaxed border-t border-[#1e1e2e] pt-4">{note}</p>
+      )}
 
       <a
         href="#"
@@ -166,10 +180,37 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-[#0a0a0f] text-white overflow-x-hidden">
 
+      {/* ── HEADER ───────────────────────────────────────────────── */}
+      <header className="fixed top-0 left-0 right-0 z-50 px-5 py-4 bg-[#0a0a0f]/80 backdrop-blur-sm border-b border-[#1e1e2e]/50">
+        <div className="max-w-5xl mx-auto flex items-center justify-between">
+          <Image
+            src="/openclaw-logo-dark.png"
+            alt="OpenClaw"
+            width={140}
+            height={36}
+            className="h-8 w-auto object-contain"
+          />
+          <a
+            href="#planos"
+            className="bg-blue-500 hover:bg-blue-400 text-white text-sm font-bold px-5 py-2 rounded-lg transition-colors duration-200"
+          >
+            Garantir Vaga
+          </a>
+        </div>
+      </header>
+
       {/* ── HERO ─────────────────────────────────────────────────── */}
-      <section className="relative min-h-screen flex flex-col items-center justify-center px-5 py-24 text-center hero-grid">
-        {/* Background glow blob */}
+      <section className="relative min-h-screen flex flex-col items-center justify-center px-5 pt-32 pb-24 text-center hero-grid">
+        {/* Background hero image */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <Image
+            src="/hero.png"
+            alt=""
+            fill
+            className="object-cover opacity-10"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0f]/60 via-transparent to-[#0a0a0f]" />
           <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-blue-600/10 rounded-full blur-3xl" />
         </div>
 
@@ -189,13 +230,18 @@ export default function Home() {
             &ldquo;Construa seu time de IA — e deixe eles trabalharem enquanto você dorme&rdquo;
           </p>
 
-          <div className="flex items-center justify-center gap-3 text-slate-400 text-base font-medium">
+          <div className="flex items-center justify-center gap-3 text-slate-400 text-base font-medium mb-10">
             <span>📅</span>
-            <span>28 de março</span>
+            <span>28 de março às 13h</span>
             <span className="text-slate-600">·</span>
             <span>Ao vivo</span>
             <span className="text-slate-600">·</span>
             <span>4 horas</span>
+          </div>
+
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <CTAButton label="GARANTIR MINHA VAGA STARTER — R$ 97" variant="outline" />
+            <CTAButton label="QUERO O ACESSO VIP — R$ 147" variant="primary" />
           </div>
         </div>
 
@@ -207,44 +253,44 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── SEÇÃO 1 — O momento que separa ────────────────────────── */}
+      {/* ── SEÇÃO 2 — ABERTURA ────────────────────────────────────── */}
       <section className="py-24 px-5">
         <div className="max-w-3xl mx-auto">
           <Section>
             <div className="mb-10">
-              <span className="text-blue-500 text-xs font-bold tracking-widest uppercase">01</span>
               <h2 className="text-3xl sm:text-4xl font-extrabold mt-2 leading-tight">
-                O momento que separa quem{' '}
-                <span className="gradient-text">opera</span> de quem{' '}
-                <span className="gradient-text">escala</span>
+                A IA não é mais ferramenta.{' '}
+                <span className="gradient-text">É funcionário.</span>
               </h2>
             </div>
 
-            <div className="space-y-6 text-slate-300 text-lg leading-relaxed">
+            <div className="space-y-5 text-slate-300 text-lg leading-relaxed">
               <p>
-                Durante anos, IA foi ferramenta de consulta. Você perguntava. Ela respondia. Conversa
-                encerrada, trabalho seguia na sua mão.
+                Você já usou ChatGPT pra rascunhar texto.<br />
+                Já pediu pro Claude revisar uma copy.<br />
+                Isso era a fase 1 — e ela acabou.
               </p>
-              <p className="text-slate-500 font-semibold text-base tracking-wide uppercase">
-                Essa era a fase 1.
-              </p>
+
               <p>
-                Agora estamos na <strong className="text-white">fase 2</strong> — e a diferença é abissal.
+                A fase 2 é diferente:<br />
+                <strong className="text-white">agentes que operam sozinhos</strong>, entregam resultado e não precisam que você fique na tela.
               </p>
+
               <p>
-                Hoje a IA executa. Ela finaliza enquanto você reúne, entrega enquanto você decide,{' '}
-                <strong className="text-white">opera enquanto você dorme</strong>. Não é assistente. É time.
+                Enquanto você atende cliente, está na academia ou dorme — eles estão rodando.<br />
+                Monitorando dados. Gerando relatórios. Respondendo leads. Construindo ferramentas.
               </p>
+
               <div className="border-l-2 border-blue-500 pl-6 py-2">
                 <p>
-                  Quem montar esse time primeiro vai ter uma vantagem competitiva que dinheiro não compra
-                  depois. O gap entre quem tem agentes autônomos e quem ainda opera sozinho vai se tornar{' '}
-                  <strong className="text-white">irreversível em meses</strong>, não em anos.
+                  O problema não é acesso à tecnologia.<br />
+                  É que a maioria ainda usa IA como buscador glorificado.
                 </p>
               </div>
+
               <p>
-                A imersão <strong className="text-white">Agentes em Ação</strong> existe para colocar você do
-                lado certo desse gap — agora.
+                Nessa imersão, a gente mostra como montar a estrutura que trabalha por você.<br />
+                <strong className="text-white">Ao vivo. Com tela aberta. Sem teoria de palco.</strong>
               </p>
             </div>
           </Section>
@@ -256,155 +302,224 @@ export default function Home() {
         <div className="h-px bg-gradient-to-r from-transparent via-blue-500/30 to-transparent" />
       </div>
 
-      {/* ── SEÇÃO 2 — O que é essa imersão ────────────────────────── */}
+      {/* ── SEÇÃO 3 — O QUE É ESSA IMERSÃO ───────────────────────── */}
       <section className="py-24 px-5">
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-5xl mx-auto">
           <Section>
-            <div className="mb-10">
-              <span className="text-blue-500 text-xs font-bold tracking-widest uppercase">02</span>
-              <h2 className="text-3xl sm:text-4xl font-extrabold mt-2 leading-tight">
-                O que é essa imersão
-              </h2>
-            </div>
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              {/* Text */}
+              <div>
+                <h2 className="text-3xl sm:text-4xl font-extrabold mb-8 leading-tight">
+                  4 horas. Ao vivo. Tela aberta.
+                </h2>
 
-            <div className="grid sm:grid-cols-3 gap-6 mb-10">
-              {[
-                { icon: '⏱', label: '4 horas', sub: 'ao vivo' },
-                { icon: '🚫', label: 'Zero teoria', sub: 'zero enrolação' },
-                { icon: '🤖', label: 'Do zero', sub: 'ao funcionando' },
-              ].map((item) => (
-                <div
-                  key={item.label}
-                  className="bg-[#111118] border border-[#1e1e2e] rounded-xl p-6 text-center"
-                >
-                  <div className="text-3xl mb-3">{item.icon}</div>
-                  <p className="text-white font-bold text-lg">{item.label}</p>
-                  <p className="text-slate-500 text-sm">{item.sub}</p>
+                <div className="space-y-5 text-slate-300 text-lg leading-relaxed">
+                  <p className="text-slate-400 font-semibold">
+                    Não é curso. Não é palestra. Não é pitch disfarçado de conteúdo.
+                  </p>
+                  <p>
+                    É uma imersão prática onde você vai ver — em tempo real — como uma infra de agentes de IA funciona de verdade.
+                  </p>
+                  <p className="text-white font-semibold">
+                    Arquitetura real. Erros reais. Custos reais.
+                  </p>
+                  <p>
+                    Você vai sair sabendo o que montar, por onde começar e o que evitar.<br />
+                    Sem precisar ser técnico. Sem precisar de equipe.
+                  </p>
+                  <p className="text-slate-400 italic">
+                    Só precisar querer que as coisas rodem sem depender de você.
+                  </p>
                 </div>
-              ))}
-            </div>
+              </div>
 
-            <div className="space-y-4 text-slate-300 text-lg leading-relaxed">
-              <p>
-                Você vai ver na prática como montar um time de agentes autônomos operando{' '}
-                <strong className="text-white">OpenClaw</strong> — do zero ao funcionando.
-              </p>
-              <p className="text-slate-400">
-                Não é curso gravado. É <strong className="text-white">demonstração ao vivo</strong> do que já
-                roda nas nossas operações hoje, adaptado para quem precisa implementar agora.
-              </p>
+              {/* Image */}
+              <div className="relative rounded-2xl overflow-hidden border border-[#1e1e2e]">
+                <Image
+                  src="/secao-imersao.png"
+                  alt="Imersão OpenClaw em ação"
+                  width={600}
+                  height={400}
+                  className="w-full h-auto object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f]/60 to-transparent" />
+              </div>
             </div>
           </Section>
         </div>
       </section>
 
-      {/* ── SEÇÃO 3 — O que você vai ver ──────────────────────────── */}
+      {/* ── SEÇÃO 4 — O QUE VOCÊ VAI VER ─────────────────────────── */}
       <section className="py-24 px-5 bg-[#0d0d14]">
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-4xl mx-auto">
           <Section>
-            <div className="mb-10">
-              <span className="text-blue-500 text-xs font-bold tracking-widest uppercase">03</span>
-              <h2 className="text-3xl sm:text-4xl font-extrabold mt-2 leading-tight">
-                O que você vai ver e sair sabendo fazer
+            <div className="mb-12 text-center">
+              <h2 className="text-3xl sm:text-4xl font-extrabold leading-tight">
+                O que acontece nas <span className="gradient-text">4 horas</span>
               </h2>
             </div>
 
-            <ul className="flex flex-col gap-4">
-              {[
-                'OpenClaw vs. ChatGPT/Claude — por que aqui os agentes trabalham sozinhos e lá eles só respondem',
-                'Arquitetura de um time de IA — função, modelo, autonomia e integração de cada um',
-                'Integrações que escalam — Notion, Google Workspace, WhatsApp, busca em tempo real',
-                'Análise de dados e relatórios automáticos — construção ao vivo, sem código',
-                'Ferramentas próprias com seus agentes — sistemas que rodam 24h sem você',
-                'Prioridade de construção — quais agentes montar primeiro segundo seu perfil e negócio',
-                'O que quebrou no caminho — erros reais, custos reais, lições que economizam semanas',
-              ].map((item) => (
-                <CheckItem key={item} text={item} />
-              ))}
-            </ul>
+            <div className="grid sm:grid-cols-2 gap-4">
+              <ArrowItem
+                title="OpenClaw vs ChatGPT vs Claude"
+                desc="A diferença real — e por que só um deles executa"
+              />
+              <ArrowItem
+                title="Arquitetura de time de agentes"
+                desc="Como definir função, modelo e nível de autonomia de cada agente"
+              />
+              <ArrowItem
+                title="Integrações ao vivo"
+                desc="Notion, Google Workspace, WhatsApp e internet em tempo real — conectados e funcionando"
+              />
+              <ArrowItem
+                title="Análise de dados e relatórios automáticos"
+                desc="Agentes que monitoram, processam e entregam — sem você pedir"
+              />
+              <ArrowItem
+                title="Ferramentas construídas pelos próprios agentes"
+                desc="Apps funcionais criados durante a imersão, na sua frente"
+              />
+              <ArrowItem
+                title="Por onde começar — por perfil"
+                desc="Quais agentes criar primeiro dependendo do que você faz"
+              />
+              <div className="sm:col-span-2">
+                <ArrowItem
+                  title="Erros, custos e lições reais"
+                  desc="O que não funciona, quanto custa e o que a gente mudaria se fosse começar hoje"
+                />
+              </div>
+            </div>
           </Section>
         </div>
       </section>
 
-      {/* ── SEÇÃO 4 — Quem vai estar com você ────────────────────── */}
+      {/* ── CTA SECUNDÁRIO (meio de página) ───────────────────────── */}
+      <section className="py-16 px-5">
+        <div className="max-w-2xl mx-auto text-center">
+          <Section>
+            <p className="text-slate-400 text-sm font-semibold tracking-widest uppercase mb-4">
+              28 de março · 13h · Ao vivo
+            </p>
+            <h3 className="text-2xl sm:text-3xl font-extrabold mb-6 text-white">
+              Pronto pra montar seu time de IA?
+            </h3>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <CTAButton label="GARANTIR MINHA VAGA STARTER — R$ 97" variant="outline" />
+              <CTAButton label="QUERO O ACESSO VIP — R$ 147" variant="primary" />
+            </div>
+          </Section>
+        </div>
+      </section>
+
+      {/* Divider */}
+      <div className="max-w-5xl mx-auto px-5">
+        <div className="h-px bg-gradient-to-r from-transparent via-blue-500/30 to-transparent" />
+      </div>
+
+      {/* ── SEÇÃO 5 — QUEM VAI APRESENTAR ────────────────────────── */}
       <section className="py-24 px-5">
         <div className="max-w-3xl mx-auto">
           <Section>
-            <div className="mb-12">
-              <span className="text-blue-500 text-xs font-bold tracking-widest uppercase">04</span>
-              <h2 className="text-3xl sm:text-4xl font-extrabold mt-2 leading-tight">
-                Quem vai estar com você
+            <div className="mb-12 text-center">
+              <h2 className="text-3xl sm:text-4xl font-extrabold leading-tight">
+                Quem vai apresentar
               </h2>
             </div>
 
             <div className="flex flex-col gap-8">
               {/* Sidney */}
               <div className="bg-[#111118] border border-[#1e1e2e] rounded-2xl p-8 flex flex-col sm:flex-row gap-6 items-start">
-                <AvatarPlaceholder initials="SM" />
+                <div className="flex-shrink-0">
+                  <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-blue-500 shadow-lg shadow-blue-500/20">
+                    <Image
+                      src="/sidney-pro.png"
+                      alt="Sidney Medeiros"
+                      width={80}
+                      height={80}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                </div>
                 <div>
                   <h3 className="text-xl font-extrabold text-white mb-1">Sidney Medeiros</h3>
                   <p className="text-blue-400 text-sm font-semibold mb-4">Estrategista Digital</p>
                   <p className="text-slate-300 leading-relaxed text-sm sm:text-base">
-                    Projetos de múltiplos 6 dígitos em tráfego, copy e lançamentos. Não é técnico — é o leigo
-                    que resolveu o problema antes dos especialistas. Hoje coordena um time de agentes que
-                    processa, analisa e entrega enquanto ele dorme. Se você quer ver alguém que{' '}
-                    <strong className="text-white">não sabia codar montando infra de IA</strong>, é ele.
+                    Estrategista digital. Projetos com múltiplos 6 dígitos em tráfego, copy e lançamentos.
+                    Não é dev. Não é técnico. Montou uma infra de IA completa antes de qualquer especialista do seu círculo.
+                    <strong className="text-white"> Se ele conseguiu — você consegue.</strong>
                   </p>
                 </div>
               </div>
 
               {/* Avner */}
               <div className="bg-[#111118] border border-[#1e1e2e] rounded-2xl p-8 flex flex-col sm:flex-row gap-6 items-start">
-                <AvatarPlaceholder initials="AV" />
+                <div className="flex-shrink-0">
+                  <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-blue-500 shadow-lg shadow-blue-500/20">
+                    <Image
+                      src="/avner-pro.png"
+                      alt="Avner Vasconcelos"
+                      width={80}
+                      height={80}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                </div>
                 <div>
                   <h3 className="text-xl font-extrabold text-white mb-1">Avner Vasconcelos</h3>
                   <p className="text-blue-400 text-sm font-semibold mb-4">Fundador da Reta Analytics</p>
                   <p className="text-slate-300 leading-relaxed text-sm sm:text-base">
-                    Especialista em dados de tráfego, CRM e vendas. Atende 9 clientes com uma estrutura que
-                    cruza BigQuery, dashboards e agentes de IA monitorando, alertando e respondendo em tempo
-                    real. É o cara que{' '}
-                    <strong className="text-white">foi fundo na arquitetura</strong> — e vai mostrar o que
-                    existe lá embaixo.
+                    Fundador da Reta Analytics. Analista de dados com 9 clientes ativos.
+                    Construiu agentes que monitoram campanhas e geram relatórios em tempo real — rodando agora, enquanto você lê isso.
+                    É o <strong className="text-white">técnico que foi fundo e voltou pra contar como funciona de verdade.</strong>
                   </p>
                 </div>
+              </div>
+
+              <div className="text-center text-slate-400 text-base italic pt-2">
+                Dois pontos de vista. Um resultado só: <strong className="text-white">você saindo com clareza do que montar.</strong>
               </div>
             </div>
           </Section>
         </div>
       </section>
 
-      {/* ── SEÇÃO 5 — Planos ──────────────────────────────────────── */}
+      {/* ── SEÇÃO 6 — PLANOS ──────────────────────────────────────── */}
       <section className="py-24 px-5 bg-[#0d0d14]" id="planos">
         <div className="max-w-4xl mx-auto">
           <Section>
             <div className="mb-14 text-center">
-              <span className="text-blue-500 text-xs font-bold tracking-widest uppercase">05</span>
               <h2 className="text-3xl sm:text-4xl font-extrabold mt-2 leading-tight">
                 Escolha seu acesso
               </h2>
-              <p className="text-slate-400 mt-3 text-lg">28 de março · Ao vivo · 4 horas</p>
+              <p className="text-slate-400 mt-3 text-lg">28 de março · 13h · Ao vivo · 4 horas</p>
             </div>
 
             <div className="grid sm:grid-cols-2 gap-6 items-start">
               <PricingCard
                 plan="Starter"
                 price="R$ 97"
+                subtitle="Para quem quer ver, entender e começar."
                 features={[
-                  'Imersão ao vivo — 28 de março',
+                  'Imersão ao vivo — 28 de março às 13h',
                   'Pré-imersão gravado — 7 dias de acesso',
                 ]}
-                ctaLabel="GARANTIR ACESSO STARTER — R$ 97"
+                note="Sem replay. O que acontece ao vivo, fica ao vivo."
+                ctaLabel="GARANTIR MINHA VAGA STARTER"
               />
               <PricingCard
                 plan="VIP"
                 price="R$ 147"
+                subtitle="Para quem quer sair com plano de ação personalizado."
                 features={[
-                  'Imersão ao vivo — 28 de março',
+                  'Imersão ao vivo — 28 de março às 13h',
                   'Pré-imersão gravado — 30 dias de acesso',
-                  'Gravação da imersão — 30 dias para revisar',
-                  'Sessão privada com IAVNER no WhatsApp — plano personalizado de agentes para o seu negócio',
+                  'Gravação da imersão — 30 dias para revisar no seu ritmo',
+                  'Sessão privada com IAVNER no WhatsApp — onboarding direto: quais agentes criar primeiro, como configurar, por onde começar no seu contexto específico',
                 ]}
-                ctaLabel="GARANTIR ACESSO VIP — R$ 147"
+                note="IAVNER é o agente que já está operando na estrutura OpenClaw. Ele analisa o seu perfil e monta um plano do zero pra você."
+                ctaLabel="QUERO O ACESSO VIP"
                 highlight
               />
             </div>
@@ -412,42 +527,50 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── SEÇÃO 6 — Urgência / CTA final ───────────────────────── */}
+      {/* ── SEÇÃO 7 — FECHAMENTO / URGÊNCIA ──────────────────────── */}
       <section className="py-24 px-5">
         <div className="max-w-3xl mx-auto text-center">
           <Section>
-            <div className="mb-6">
-              <span className="text-blue-500 text-xs font-bold tracking-widest uppercase">06</span>
-            </div>
-
-            <h2 className="text-3xl sm:text-5xl font-extrabold leading-tight mb-6">
-              O dia <span className="gradient-text">28 está chegando.</span>
+            <h2 className="text-3xl sm:text-5xl font-extrabold leading-tight mb-8">
+              28 de março. 13h. <span className="gradient-text">Ao vivo.</span>
             </h2>
 
-            <div className="flex flex-col gap-3 text-slate-400 text-lg mb-12 max-w-xl mx-auto">
-              <p>
-                🔒 <strong className="text-white">Não terá replay</strong> para o plano Starter.
-              </p>
-              <p>
-                🎯 <strong className="text-white">Vagas limitadas</strong> — o acesso VIP envolve atendimento
-                individual antes do evento.
-              </p>
-              <p>
-                ⚡ O mercado não espera você estar pronto.
+            <div className="flex flex-col gap-3 text-slate-300 text-lg mb-12 max-w-xl mx-auto">
+              <p>Não tem replay no Starter.</p>
+              <p>Não tem segunda chamada.</p>
+              <p className="font-semibold text-white">As vagas são limitadas — e quando fechar, fechou.</p>
+            </div>
+
+            <div className="bg-[#111118] border border-[#1e1e2e] rounded-2xl p-8 mb-12 text-left max-w-xl mx-auto">
+              <p className="text-slate-300 text-lg leading-relaxed">
+                A virada já está acontecendo.<br />
+                A pergunta é se você vai entrar agora ou ficar tentando entender depois o que os outros já estão usando.
               </p>
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <CTAButton label="QUERO MEU ACESSO STARTER — R$ 97" variant="outline" />
-              <CTAButton label="QUERO MEU ACESSO VIP — R$ 147" variant="primary" />
+              <CTAButton label="GARANTIR MINHA VAGA STARTER — R$ 97" variant="outline" />
+              <CTAButton label="QUERO O ACESSO VIP — R$ 147" variant="primary" />
             </div>
           </Section>
         </div>
       </section>
 
       {/* ── FOOTER ───────────────────────────────────────────────── */}
-      <footer className="py-10 px-5 border-t border-[#1e1e2e] text-center text-slate-600 text-sm">
-        <p>© 2025 Agência Eidos · imersao.agenciaeidos.com.br</p>
+      <footer className="py-10 px-5 border-t border-[#1e1e2e]">
+        <div className="max-w-5xl mx-auto flex flex-col items-center gap-4">
+          <div className="flex items-center gap-3">
+            <Image
+              src="/pixel-lobster.svg"
+              alt="OpenClaw"
+              width={28}
+              height={28}
+              className="opacity-60"
+            />
+            <span className="text-slate-500 text-sm">Powered by OpenClaw</span>
+          </div>
+          <p className="text-slate-600 text-sm text-center">© 2025 Agência Eidos · imersao.agenciaeidos.com.br</p>
+        </div>
       </footer>
     </main>
   )
