@@ -507,7 +507,7 @@ export default function Home() {
               <h2 className="text-3xl sm:text-4xl font-extrabold mt-2 leading-tight">
                 Escolha seu acesso
               </h2>
-              <p className="text-slate-400 mt-3 text-lg">28 de março · 13h · Ao vivo · 4 horas de imersão</p>
+              <p className="text-slate-400 mt-3 text-lg">28 de março · 13h · Ao vivo · 4 horas</p>
             </div>
 
             <div className="grid sm:grid-cols-2 gap-6 items-start pt-10 overflow-visible">
