@@ -69,3 +69,8 @@ body {
 ::-webkit-scrollbar-track { background: #0a0a0f; }
 ::-webkit-scrollbar-thumb { background: #1e1e2e; border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: #3b82f6; }
+
+/* Fallback: garante conteúdo visível sem JS ou com reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .transition-all { opacity: 1 !important; transform: none !important; }
+}

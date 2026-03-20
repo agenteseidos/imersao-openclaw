@@ -19,6 +19,7 @@ export const metadata: Metadata = {
     siteName: 'Agência Eidos',
     locale: 'pt_BR',
     type: 'website',
+    images: [{ url: 'https://imersao.agenciaeidos.com.br/hero.png', width: 1200, height: 630 }],
   },
   twitter: {
     card: 'summary_large_image',
@@ -34,7 +35,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR" className={inter.variable}>
-      <body>{children}</body>
+      <body>
+        <noscript>
+          <style>{`.transition-all { opacity: 1 !important; transform: none !important; }`}</style>
+        </noscript>
+        {children}
+      </body>
     </html>
   )
 }

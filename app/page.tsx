@@ -162,7 +162,7 @@ function PricingCard({
       )}
 
       <a
-        href="#"
+        href="#planos"
         className={`block text-center w-full py-4 px-6 rounded-xl font-bold text-sm tracking-wide transition-all duration-200 hover:-translate-y-0.5 ${
           highlight
             ? 'bg-blue-500 text-white hover:bg-blue-400 shadow-lg hover:shadow-blue-500/40'
@@ -204,7 +204,7 @@ export default function Home() {
         {/* Background hero image */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <Image
-            src="/hero.png"
+            src="/hero.webp"
             alt=""
             fill
             className="object-cover opacity-10"
@@ -498,7 +498,7 @@ export default function Home() {
               <p className="text-slate-400 mt-3 text-lg">28 de março · 13h · Ao vivo · 4 horas</p>
             </div>
 
-            <div className="grid sm:grid-cols-2 gap-6 items-start">
+            <div className="grid sm:grid-cols-2 gap-6 items-start pt-6">
               <PricingCard
                 plan="Starter"
                 price="R$ 97"
