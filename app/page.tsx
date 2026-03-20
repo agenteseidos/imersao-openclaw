@@ -321,7 +321,7 @@ export default function Home() {
               {/* Text */}
               <div>
                 <h2 className="text-3xl sm:text-4xl font-extrabold mb-8 leading-tight">
-                  4 horas. Ao vivo. Tela aberta.
+                  4 horas. Ao vivo. <span className="gradient-text">Tela aberta.</span>
                 </h2>
 
                 <div className="grid gap-4">
