@@ -136,7 +136,7 @@ function PricingCard({
       }`}
     >
       {highlight && (
-        <div className="absolute -top-4 left-1/2 -translate-x-1/2">
+        <div className="flex justify-center -mt-2 mb-0">
           <span className="bg-blue-500 text-white text-xs font-bold px-4 py-1.5 rounded-full tracking-widest uppercase shadow-lg">
             Melhor custo-benefício
           </span>
