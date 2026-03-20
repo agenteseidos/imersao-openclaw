@@ -242,6 +242,9 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <CTAButton label="Quero garantir minha vaga →" variant="primary" />
           </div>
+          <p className="mt-4 text-slate-500 text-sm text-center max-w-md mx-auto">
+            ⚡ Esta página foi construída inteiramente por agentes de IA — do layout ao texto — em menos de 2 horas.
+          </p>
         </div>
 
         {/* Scroll hint */}
