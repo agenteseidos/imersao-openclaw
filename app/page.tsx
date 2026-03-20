@@ -200,7 +200,7 @@ export default function Home() {
       </header>
 
       {/* ── HERO ─────────────────────────────────────────────────── */}
-      <section className="relative min-h-screen flex flex-col items-center justify-center px-5 pt-32 pb-24 text-center hero-grid">
+      <section className="relative min-h-screen flex flex-col items-center justify-center px-5 pt-32 pb-16 text-center hero-grid">
         {/* Background hero image */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <Image
@@ -240,8 +240,7 @@ export default function Home() {
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <CTAButton label="GARANTIR MINHA VAGA STARTER — R$ 97" variant="outline" />
-            <CTAButton label="QUERO O ACESSO VIP — R$ 147" variant="primary" />
+            <CTAButton label="Quero garantir minha vaga →" variant="primary" />
           </div>
         </div>
 
@@ -313,23 +312,28 @@ export default function Home() {
                   4 horas. Ao vivo. Tela aberta.
                 </h2>
 
-                <div className="space-y-5 text-slate-300 text-lg leading-relaxed">
-                  <p className="text-slate-400 font-semibold">
-                    Não é curso. Não é palestra. Não é pitch disfarçado de conteúdo.
-                  </p>
-                  <p>
-                    É uma imersão prática onde você vai ver — em tempo real — como uma infra de agentes de IA funciona de verdade.
-                  </p>
-                  <p className="text-white font-semibold">
-                    Arquitetura real. Erros reais. Custos reais.
-                  </p>
-                  <p>
-                    Você vai sair sabendo o que montar, por onde começar e o que evitar.<br />
-                    Sem precisar ser técnico. Sem precisar de equipe.
-                  </p>
-                  <p className="text-slate-400 italic">
-                    Só precisar querer que as coisas rodem sem depender de você.
-                  </p>
+                <div className="grid gap-4">
+                  <div className="bg-[#111118] border border-[#1e1e2e] rounded-xl p-5 flex items-start gap-4">
+                    <span className="text-3xl flex-shrink-0">🎯</span>
+                    <div>
+                      <p className="text-white font-bold text-base mb-1">Não é curso, não é palestra</p>
+                      <p className="text-slate-400 text-sm leading-relaxed">Não é pitch disfarçado de conteúdo. É uma imersão prática onde você vai ver — em tempo real — como uma infra de agentes de IA funciona de verdade.</p>
+                    </div>
+                  </div>
+                  <div className="bg-[#111118] border border-[#1e1e2e] rounded-xl p-5 flex items-start gap-4">
+                    <span className="text-3xl flex-shrink-0">🖥️</span>
+                    <div>
+                      <p className="text-white font-bold text-base mb-1">Tela aberta, sem teatro</p>
+                      <p className="text-slate-400 text-sm leading-relaxed">Você vai sair sabendo o que montar, por onde começar e o que evitar. Sem precisar ser técnico. Sem precisar de equipe.</p>
+                    </div>
+                  </div>
+                  <div className="bg-[#111118] border border-[#1e1e2e] rounded-xl p-5 flex items-start gap-4">
+                    <span className="text-3xl flex-shrink-0">⚡</span>
+                    <div>
+                      <p className="text-white font-bold text-base mb-1">Arquitetura real</p>
+                      <p className="text-slate-400 text-sm leading-relaxed">Erros reais. Custos reais. Só precisar querer que as coisas rodem sem depender de você.</p>
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -396,18 +400,17 @@ export default function Home() {
       </section>
 
       {/* ── CTA SECUNDÁRIO (meio de página) ───────────────────────── */}
-      <section className="py-16 px-5">
+      <section className="py-10 px-5">
         <div className="max-w-2xl mx-auto text-center">
           <Section>
-            <p className="text-slate-400 text-sm font-semibold tracking-widest uppercase mb-4">
+            <p className="text-slate-400 text-sm font-semibold tracking-widest uppercase mb-3">
               28 de março · 13h · Ao vivo
             </p>
-            <h3 className="text-2xl sm:text-3xl font-extrabold mb-6 text-white">
+            <h3 className="text-2xl sm:text-3xl font-extrabold mb-5 text-white">
               Pronto pra montar seu time de IA?
             </h3>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <CTAButton label="GARANTIR MINHA VAGA STARTER — R$ 97" variant="outline" />
-              <CTAButton label="QUERO O ACESSO VIP — R$ 147" variant="primary" />
+            <div className="flex justify-center">
+              <CTAButton label="Quero garantir minha vaga →" variant="primary" />
             </div>
           </Section>
         </div>
@@ -428,9 +431,9 @@ export default function Home() {
               </h2>
             </div>
 
-            <div className="flex flex-col gap-8">
+            <div className="flex flex-col gap-4">
               {/* Sidney */}
-              <div className="bg-[#111118] border border-[#1e1e2e] rounded-2xl p-8 flex flex-col sm:flex-row gap-6 items-start">
+              <div className="bg-[#111118] border border-[#1e1e2e] rounded-2xl p-6 flex flex-col sm:flex-row gap-6 items-start">
                 <div className="flex-shrink-0">
                   <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-blue-500 shadow-lg shadow-blue-500/20">
                     <Image
@@ -446,15 +449,14 @@ export default function Home() {
                   <h3 className="text-xl font-extrabold text-white mb-1">Sidney Medeiros</h3>
                   <p className="text-blue-400 text-sm font-semibold mb-4">Estrategista Digital</p>
                   <p className="text-slate-300 leading-relaxed text-sm sm:text-base">
-                    Estrategista digital. Projetos com múltiplos 6 dígitos em tráfego, copy e lançamentos.
-                    Não é dev. Não é técnico. Montou uma infra de IA completa antes de qualquer especialista do seu círculo.
-                    <strong className="text-white"> Se ele conseguiu — você consegue.</strong>
+                    Estrategista digital com participação em projetos de múltiplos 6 dígitos em vendas de infoprodutos. Não é dev, não é técnico — montou uma infra de IA completa seguindo o próprio feeling e saiu na frente.
+                    <strong className="text-white"> Se ele conseguiu sem background técnico, você também consegue.</strong>
                   </p>
                 </div>
               </div>
 
               {/* Avner */}
-              <div className="bg-[#111118] border border-[#1e1e2e] rounded-2xl p-8 flex flex-col sm:flex-row gap-6 items-start">
+              <div className="bg-[#111118] border border-[#1e1e2e] rounded-2xl p-6 flex flex-col sm:flex-row gap-6 items-start">
                 <div className="flex-shrink-0">
                   <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-blue-500 shadow-lg shadow-blue-500/20">
                     <Image
@@ -548,8 +550,7 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <CTAButton label="GARANTIR MINHA VAGA STARTER — R$ 97" variant="outline" />
+            <div className="flex justify-center">
               <CTAButton label="QUERO O ACESSO VIP — R$ 147" variant="primary" />
             </div>
           </Section>
@@ -569,7 +570,7 @@ export default function Home() {
             />
             <span className="text-slate-500 text-sm">Powered by OpenClaw</span>
           </div>
-          <p className="text-slate-600 text-sm text-center">© 2025 Agência Eidos · imersao.agenciaeidos.com.br</p>
+          <p className="text-slate-600 text-sm text-center">© 2026 Agência Eidos · imersao.agenciaeidos.com.br</p>
         </div>
       </footer>
     </main>
