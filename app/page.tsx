@@ -48,16 +48,20 @@ function Section({
 function CTAButton({
   label,
   variant = 'primary',
+  href = '#planos',
 }: {
   label: string
   variant?: 'primary' | 'outline'
+  href?: string
 }) {
   const base =
     'inline-block w-full sm:w-auto px-8 py-4 rounded-xl font-bold text-base tracking-wide transition-all duration-200 cursor-pointer text-center'
   if (variant === 'primary') {
     return (
       <a
-        href="#planos"
+        href={href}
+        target={href.startsWith('http') ? '_blank' : undefined}
+        rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
         className={`${base} bg-blue-500 hover:bg-blue-400 text-white shadow-lg hover:shadow-blue-500/40 hover:-translate-y-0.5 active:translate-y-0`}
       >
         {label}
@@ -66,7 +70,9 @@ function CTAButton({
   }
   return (
     <a
-      href="#planos"
+      href={href}
+      target={href.startsWith('http') ? '_blank' : undefined}
+      rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
       className={`${base} border border-blue-500 text-blue-400 hover:bg-blue-500/10 hover:border-blue-400 hover:-translate-y-0.5 active:translate-y-0`}
     >
       {label}
@@ -117,6 +123,7 @@ function PricingCard({
   features,
   note,
   ctaLabel,
+  ctaHref = '#planos',
   highlight = false,
 }: {
   plan: string
@@ -125,6 +132,7 @@ function PricingCard({
   features: string[]
   note?: string
   ctaLabel: string
+  ctaHref?: string
   highlight?: boolean
 }) {
   return (
@@ -162,7 +170,9 @@ function PricingCard({
       )}
 
       <a
-        href="#planos"
+        href={ctaHref}
+        target="_blank"
+        rel="noopener noreferrer"
         className={`block text-center w-full py-4 px-6 rounded-xl font-bold text-sm tracking-wide transition-all duration-200 hover:-translate-y-0.5 ${
           highlight
             ? 'bg-blue-500 text-white hover:bg-blue-400 shadow-lg hover:shadow-blue-500/40'
@@ -524,6 +534,7 @@ export default function Home() {
                 ]}
                 note="Sem replay. O que acontece ao vivo, fica ao vivo."
                 ctaLabel="GARANTIR MINHA VAGA STARTER"
+                ctaHref="https://pay.hotmart.com/X105002125N?off=rtciubcx"
               />
               <PricingCard
                 plan="VIP"
@@ -537,6 +548,7 @@ export default function Home() {
                 ]}
                 note="IAVNER é o agente que já está operando na estrutura OpenClaw. Ele analisa o seu perfil e monta um plano do zero pra você."
                 ctaLabel="QUERO O ACESSO VIP"
+                ctaHref="https://pay.hotmart.com/R105002285N?off=tku0qzgx"
                 highlight
               />
             </div>
@@ -566,7 +578,7 @@ export default function Home() {
             </div>
 
             <div className="flex justify-center">
-              <CTAButton label="QUERO O ACESSO VIP — R$ 147" variant="primary" />
+              <CTAButton label="QUERO O ACESSO VIP — R$ 147" variant="primary" href="https://pay.hotmart.com/R105002285N?off=tku0qzgx" />
             </div>
           </Section>
         </div>
