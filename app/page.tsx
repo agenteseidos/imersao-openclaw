@@ -236,7 +236,7 @@ export default function Home() {
             <span className="text-slate-600">·</span>
             <span>Ao vivo</span>
             <span className="text-slate-600">·</span>
-            <span>4 horas</span>
+            <span>4 horas de imersão</span>
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
