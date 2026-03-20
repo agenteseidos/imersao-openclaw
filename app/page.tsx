@@ -230,13 +230,13 @@ export default function Home() {
             &ldquo;Construa seu time de IA — e deixe eles trabalharem enquanto você dorme&rdquo;
           </p>
 
-          <div className="flex items-center justify-center gap-3 text-slate-400 text-base font-medium mb-10">
-            <span>📅</span>
-            <span>28 de março às 13h</span>
-            <span className="text-slate-600">·</span>
-            <span>Ao vivo</span>
-            <span className="text-slate-600">·</span>
-            <span>4 horas de imersão</span>
+          <div className="flex flex-col items-center gap-1 text-slate-400 font-medium mb-10">
+            <div className="flex items-center gap-3 text-base">
+              <span>28 de março às 13h</span>
+              <span className="text-slate-600">·</span>
+              <span>Ao vivo</span>
+            </div>
+            <span className="text-base">4 horas de imersão</span>
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
