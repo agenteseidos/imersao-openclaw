@@ -498,7 +498,7 @@ export default function Home() {
               <p className="text-slate-400 mt-3 text-lg">28 de março · 13h · Ao vivo · 4 horas</p>
             </div>
 
-            <div className="grid sm:grid-cols-2 gap-6 items-start pt-6">
+            <div className="grid sm:grid-cols-2 gap-6 items-start pt-10 overflow-visible">
               <PricingCard
                 plan="Starter"
                 price="R$ 97"
