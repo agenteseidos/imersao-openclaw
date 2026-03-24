@@ -544,9 +544,9 @@ export default function Home() {
                   'Imersão ao vivo — 28 de março às 13h',
                   'Pré-imersão gravado — 30 dias de acesso',
                   'Gravação da imersão — 30 dias para revisar no seu ritmo',
-                  'Sessão privada com IAVNER no WhatsApp por 30 dias — onboarding direto: quais agentes criar primeiro, como configurar, por onde começar no seu contexto específico',
+                  'Sessão privada com IA.vner no WhatsApp por 30 dias — onboarding direto: quais agentes criar primeiro, como configurar, por onde começar no seu contexto específico',
                 ]}
-                note="IAVNER é o agente que já está operando na estrutura OpenClaw. Ele analisa o seu perfil e monta um plano do zero pra você."
+                note="IA.vner é o agente que já está operando na estrutura OpenClaw. Ele analisa o seu perfil e monta um plano do zero pra você."
                 ctaLabel="QUERO O ACESSO VIP"
                 ctaHref="https://pay.hotmart.com/R105002285N?off=tku0qzgx"
                 highlight
