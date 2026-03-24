@@ -457,29 +457,6 @@ export default function Home() {
             </div>
 
             <div className="flex flex-col gap-4">
-              {/* Sidney */}
-              <div className="bg-[#111118] border border-[#1e1e2e] rounded-2xl p-6 flex flex-col sm:flex-row gap-6 items-start">
-                <div className="flex-shrink-0">
-                  <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-blue-500 shadow-lg shadow-blue-500/20">
-                    <Image
-                      src="/sidney-pro.png"
-                      alt="Sidney Medeiros"
-                      width={80}
-                      height={80}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                </div>
-                <div>
-                  <h3 className="text-xl font-extrabold text-white mb-1">Sidney Medeiros</h3>
-                  <p className="text-blue-400 text-sm font-semibold mb-4">Estrategista Digital</p>
-                  <p className="text-slate-300 leading-relaxed text-sm sm:text-base">
-                    Estrategista digital com participação em projetos de múltiplos 6 dígitos em vendas de infoprodutos. Não é dev, não é técnico — montou uma infra de IA completa seguindo o próprio feeling e saiu na frente.
-                    <strong className="text-white"> Se ele conseguiu sem background técnico, você também consegue.</strong>
-                  </p>
-                </div>
-              </div>
-
               {/* Avner */}
               <div className="bg-[#111118] border border-[#1e1e2e] rounded-2xl p-6 flex flex-col sm:flex-row gap-6 items-start">
                 <div className="flex-shrink-0">
@@ -500,6 +477,29 @@ export default function Home() {
                     Analista de dados especializado em transformar números em decisões que aumentam lucro.
                     Construiu agentes que monitoram campanhas e entregam análises em tempo real — rodando agora, enquanto você lê isso.
                     É o <strong className="text-white">técnico que foi fundo e voltou pra contar como funciona de verdade.</strong>
+                  </p>
+                </div>
+              </div>
+
+              {/* Sidney */}
+              <div className="bg-[#111118] border border-[#1e1e2e] rounded-2xl p-6 flex flex-col sm:flex-row gap-6 items-start">
+                <div className="flex-shrink-0">
+                  <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-blue-500 shadow-lg shadow-blue-500/20">
+                    <Image
+                      src="/sidney-pro.png"
+                      alt="Sidney Medeiros"
+                      width={80}
+                      height={80}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <h3 className="text-xl font-extrabold text-white mb-1">Sidney Medeiros</h3>
+                  <p className="text-blue-400 text-sm font-semibold mb-4">Estrategista Digital</p>
+                  <p className="text-slate-300 leading-relaxed text-sm sm:text-base">
+                    Estrategista digital com participação em projetos de múltiplos 6 dígitos em vendas de infoprodutos. Não é dev, não é técnico — montou uma infra de IA completa seguindo o próprio feeling e saiu na frente.
+                    <strong className="text-white"> Se ele conseguiu sem background técnico, você também consegue.</strong>
                   </p>
                 </div>
               </div>
